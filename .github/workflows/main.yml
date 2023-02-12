@@ -44,7 +44,11 @@ jobs:
         with:
           name: package
           path: ~/package
-
+          
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: ~/package
+          
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       
