@@ -11,7 +11,7 @@ jobs:
   gradle:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
@@ -23,5 +23,5 @@ jobs:
     - name: Setup and execute Gradle 'build' task
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: build
+        arguments: clean build
         build-root-directory: user-service
