@@ -25,7 +25,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./user-service/gradlew
       - name: Execute Gradle build
-        run: ./user-service/gradlew clean build
+        run: cd ./user-service && ./gradlew clean build
       - name: Copy Jar file
         run: mv ./user-service/build/libs/$(ls build/libs) app.jar
 
