@@ -42,8 +42,8 @@ jobs:
 
       - uses: actions/download-artifact@master
         with:
-          name: user-service.jar
-          path: /home/runner/work/roti-kacang/roti-kacang/user-service/build/libs/
+          name: user-service/build/libs/user-service.jar
+          path: user-service/build/libs/user-service.jar
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
