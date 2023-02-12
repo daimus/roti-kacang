@@ -26,7 +26,7 @@ jobs:
           arguments: build
           build-root-directory: user-service
       - name: Copy Jar file
-        run: mv user-service/build/libs/$(ls build/libs) app.jar
+        run: mv user-service/build/libs/$(ls user-service/build/libs) app.jar
       - uses: actions/upload-artifact@master
         with:
           name: jar-file
