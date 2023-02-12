@@ -47,7 +47,7 @@ jobs:
           
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: ~/package
+        working-directory: /home/runner/package
           
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
