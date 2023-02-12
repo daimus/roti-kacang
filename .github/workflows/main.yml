@@ -25,12 +25,10 @@ jobs:
         with:
           arguments: build
           build-root-directory: user-service
-      - name: Copy Jar file
-        run: mv user-service/build/libs/$(ls user-service/build/libs) ./user_service.jar
-      - uses: actions/upload-artifact@master
-        with:
-          name: jar-file
-          path: ./user_service.jar
+      - uses: actions/upload-artifact@v3
+      with:
+        name: Package
+        path: user-service/build/libs
           
   build-image:
 
@@ -44,7 +42,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: jar-file
-          path: ./user_service.jar
+          path: user-service/build/libs/user-service.jar
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2

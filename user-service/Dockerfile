@@ -2,7 +2,7 @@ FROM openjdk:8-jdk
 
 RUN mkdir /app
 
-COPY app.jar /app/app.jar
+COPY user-service/build/libs/user-service.jar /app/app.jar
 
 WORKDIR /app
 
