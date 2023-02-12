@@ -2,7 +2,7 @@ FROM openjdk:17
 
 RUN mkdir /app
 
-COPY user-service/build/libs/user-service.jar /app/app.jar
+COPY ./public/user-service.jar /app/app.jar
 
 WORKDIR /app
 
