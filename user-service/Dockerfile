@@ -2,7 +2,7 @@ FROM openjdk:17
 
 WORKDIR /app
 
-COPY app.jar /app
+COPY /home/runner/work/roti-kacang/roti-kacang/app.jar /app
 
 RUN echo $(ls -1 /app)
 
