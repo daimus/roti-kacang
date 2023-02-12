@@ -42,8 +42,8 @@ jobs:
 
       - uses: actions/download-artifact@master
         with:
-          name: jar-file
-          path: user-service/build/libs/user-service.jar
+          name: user-service.jar
+          path: user-service/build/libs/
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
