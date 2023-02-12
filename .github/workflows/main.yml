@@ -58,7 +58,7 @@ jobs:
           path: ~/package
           
       - name: Display structure of downloaded files
-        run: ls -R /home/runner/package
+        run: ls -al /home/runner/package
       
       - name: Build and push
         uses: docker/build-push-action@v3
