@@ -21,12 +21,9 @@ jobs:
           
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
-      
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./user-service/gradlew
       - name: Execute Gradle build
         working-directory: ./user-service
-        run: ./gradlew clean build
+        run: gradle clean build
       - name: Copy Jar file
         run: mv ./user-service/build/libs/$(ls build/libs) app.jar
 
