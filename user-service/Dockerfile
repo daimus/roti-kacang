@@ -1,10 +1,8 @@
 FROM openjdk:17
 
-RUN mkdir /app
-
-COPY /home/runner/package/user-service.jar /app/app.jar
-
 WORKDIR /app
 
+COPY /home/runner/package/user-service.jar /app/user-service.jar
+
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "user-service.jar"]
