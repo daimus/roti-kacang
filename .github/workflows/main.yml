@@ -28,8 +28,8 @@ jobs:
       - name: Upload jar
         uses: actions/upload-artifact@v3
         with:
-          name: Package
-          path: user-service/build/libs
+          name: public
+          path: public
           
   build-image:
 
@@ -42,8 +42,7 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          name: /home/runner/work/roti-kacang/roti-kacang/user-service/build/libs/user-service.jar
-          path: user-service/build/libs
+          name: public
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
