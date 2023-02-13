@@ -82,7 +82,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    @CachePut(key = "#id" ,value = "ProductCache")
+    @CachePut(key = "#product.id" ,value = "ProductCache")
     public Product save(Product product) {
         ProductEntity productEntities = new ProductEntity();
         BeanUtils.copyProperties(product, productEntities);
