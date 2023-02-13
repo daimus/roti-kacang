@@ -1,10 +1,10 @@
-name: E-Commerce User Service CI/CD
+name: E-Commerce Product Service CI/CD
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - 'user-service/**'
+      - 'product-service/**'
 
 permissions:
   contents: read
@@ -26,7 +26,7 @@ jobs:
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: build
-          build-root-directory: user-service
+          build-root-directory: product-service
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       
@@ -41,9 +41,9 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./user-service
+          context: ./product-service
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/user_service:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/product_service:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -57,7 +57,7 @@ jobs:
           key: ${{ secrets.AWS_EC2_PRIVATE_KEY1 }}
           envs: GITHUB_SHA
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/user_service:latest
-            docker stop user_service
-            docker rm user_service
-            docker run -d --name user_service --env SPRING.DATASOURCE.URL=jdbc:mysql://${{ secrets.MYSQL_HOST }}:${{ secrets.MYSQL_PORT }}/users --env SPRING.DATASOURCE.USERNAME=${{ secrets.MYSQL_USER }} --env SPRING.DATASOURCE.PASSWORD=${{ secrets.MYSQL_PASSWORD }} --env SPRING.JWT.TOKEN=${{ secrets.JWT_TOKEN }} --env SERVICE.IP=${{ secrets.SERVICE_IP }} -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/user_service:latest
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/product_service:latest
+            docker stop product_service
+            docker rm product_service
+            docker run -d --name product_service --env SPRING.DATASOURCE.URL=jdbc:mysql://${{ secrets.MYSQL_HOST }}:${{ secrets.MYSQL_PORT }}/products --env SPRING.DATASOURCE.USERNAME=${{ secrets.MYSQL_USER }} --env SPRING.DATASOURCE.PASSWORD=${{ secrets.MYSQL_PASSWORD }} --env SPRING.DATA.REDIS.HOST=${{ secrets.REDIS_HOST }} --env SPRING.DATA.REDIS.PORT=${{ secrets.REDIS_PORT }} --env SPRING.JWT.TOKEN=${{ secrets.JWT_TOKEN }} --env SERVICE.IP=${{ secrets.SERVICE_IP }} -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/product_service:latest
